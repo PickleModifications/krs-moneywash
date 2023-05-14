@@ -1,5 +1,7 @@
 ## KRS MONEYWASH  WASHING OF DIRTY MONEY
 
+Added lib minigame feature
+
 * copyright 𝗞𝗥𝗦® 2023
 
 ## DEPENDENCIES YOU NEED TO MAKE THE SCRIPT WORK
