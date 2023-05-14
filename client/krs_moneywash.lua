@@ -9,22 +9,36 @@ local options = {
         label = KRS.Label,
         distance = 10.5,
         onSelect = function(data)
-       
             if moneywash then
-                
-                FreezeEntityPosition(PlayerPedId(), true)
-                local input = lib.inputDialog('Krs Moneywash', {
-                    {type = 'number', label = 'Amount', description = 'black money', icon = 'dollar'},
-                    
+               
+                local Ped = PlayerPedId()
+                local success = lib.skillCheck({'easy', 'easy', {areaSize = 50, speedMultiplier = 1.5}})
+              
+                if success then
+                    lib.notify({
+                        title = 'Minigame',
+                        description = KRS.Lang["success"],
+                        type = 'success'
+                    })
+                    local input = lib.inputDialog('Krs Moneywash', {
+                        {type = 'number', label = 'Amount', description = 'black money', icon = 'dollar'},
                     })
 
-                FreezeEntityPosition(PlayerPedId(), false)
-                if input and #input > 0 then
+                    
+                    if input and #input > 0 then
                         TriggerServerEvent('krs_lavaggiosoldi', input[1])
-                       
-                    end       
+                    end
+                else
+                    
+                    lib.notify({
+                        title = 'Minigame',
+                        description = KRS.Lang["error"],
+                        type = 'error'
+                    })
+
                 end
-            end,
+            end
+        end,
         canInteract = function(entity, distance, coords, name, bone)
             return not IsEntityDead(entity)
         end
@@ -45,8 +59,9 @@ Citizen.CreateThread(function()
         SetBlockingOfNonTemporaryEvents(npc, true)
        
         exports.ox_target:addLocalEntity(npc, options)
-     end
+    end
 end)
+
 
 
 CreateThread(function()

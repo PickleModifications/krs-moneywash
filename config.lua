@@ -1,5 +1,12 @@
 KRS = {}
 
+KRS.Lang = {
+
+    ["error"] = "Failed minigame!!",
+    ["success"] = "Success minigame!!"
+    
+}
+
 -- Icon --
 KRS.Icon = "fas fa-dollar"
 -- Label --
