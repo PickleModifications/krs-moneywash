@@ -10,24 +10,20 @@ local options = {
         distance = 10.5,
         onSelect = function(data)
             if moneywash then
-               
                 local Ped = PlayerPedId()
-                local success = lib.skillCheck({'easy', 'easy', {areaSize = 50, speedMultiplier = 1.5}})
-              
+                local input = lib.inputDialog('Krs Moneywash', {
+                    {type = 'number', label = 'Amount', description = 'black money', icon = 'dollar'},
+                })
+                if not input or #input > 0 or not tonumber(input[1]) then return end
+                local amount = tonumber(input[1])
+                local success = (Config.Action ~= nil and Config.Action(amount) or lib.skillCheck({'easy', 'easy', {areaSize = 50, speedMultiplier = 1.5}}))
                 if success then
                     lib.notify({
                         title = 'Minigame',
                         description = KRS.Lang["success"],
                         type = 'success'
                     })
-                    local input = lib.inputDialog('Krs Moneywash', {
-                        {type = 'number', label = 'Amount', description = 'black money', icon = 'dollar'},
-                    })
-
-                    
-                    if input and #input > 0 then
-                        TriggerServerEvent('krs_lavaggiosoldi', input[1])
-                    end
+                    TriggerServerEvent('krs_lavaggiosoldi', amount)
                 else
                     
                     lib.notify({
@@ -35,7 +31,6 @@ local options = {
                         description = KRS.Lang["error"],
                         type = 'error'
                     })
-
                 end
             end
         end,
