@@ -1,11 +1,14 @@
 KRS = {}
 
 KRS.Lang = {
-
     ["error"] = "Failed minigame!!",
     ["success"] = "Success minigame!!"
-    
 }
+
+-- Wash Money Action Check --
+KRS.Action = function(amount)
+    return lib.skillCheck({'easy', 'easy', {areaSize = 50, speedMultiplier = 1.5}})
+end
 
 -- Icon --
 KRS.Icon = "fas fa-dollar"
