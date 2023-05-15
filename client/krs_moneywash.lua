@@ -16,7 +16,7 @@ local options = {
                 })
                 if not input or #input > 0 or not tonumber(input[1]) then return end
                 local amount = tonumber(input[1])
-                local success = (Config.Action ~= nil and Config.Action(amount) or lib.skillCheck({'easy', 'easy', {areaSize = 50, speedMultiplier = 1.5}}))
+                local success = (KRS.Action ~= nil and KRS.Action(amount) or lib.skillCheck({'easy', 'easy', {areaSize = 50, speedMultiplier = 1.5}}))
                 if success then
                     lib.notify({
                         title = 'Minigame',
